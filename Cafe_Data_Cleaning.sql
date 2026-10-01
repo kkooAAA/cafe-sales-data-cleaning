@@ -25,15 +25,6 @@ WHERE `Row Num` > 1;
 
 -- Standardlize the Data
 
-SELECT DISTINCT Item
-FROM cafe_staging;
-
-DELETE
-FROM cafe_staging
-WHERE Item = 'ERROR' 
-OR Item = 'UNKNOWN'
-OR Item = '';
-
 SELECT DISTINCT Quantity, `Price Per Unit`, `Total Spent`
 FROM cafe_staging;
 
@@ -64,6 +55,20 @@ SET `Payment Method` = NULL
 WHERE `Payment Method` = 'ERROR'
 OR `Payment Method` = 'UNKNOWN'
 OR `Payment Method` = '';
+
+SELECT DISTINCT Item, Quantity, `Price Per Unit`, `Total Spent` 
+FROM cafe_staging
+ORDER BY Item;
+
+UPDATE cafe_staging
+SET Item = CASE
+    WHEN `Total Spent` / Quantity = 2 THEN 'Coffee'
+    WHEN `Total Spent` / Quantity = 1 THEN 'Cookie'
+    WHEN `Total Spent` / Quantity = 5 THEN 'Salad'
+    WHEN `Total Spent` / Quantity = 1.5 THEN 'Tea'
+    ELSE NULL
+END
+WHERE Item = 'ERROR' OR Item = 'UNKNOWN' OR Item = '';
 
 SELECT DISTINCT Location
 FROM cafe_staging; 
