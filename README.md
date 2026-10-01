@@ -4,6 +4,8 @@ A SQL project that cleans a messy cafe sales dataset (`dirty_cafe_sales.csv`) so
 
 ## Dataset
 
+Source: [Cafe Sales - Dirty Data for Cleaning Training (Kaggle)](https://www.kaggle.com/datasets/ahmedmohamed2003/cafe-sales-dirty-data-for-cleaning-training)
+
 The raw table `dirty_cafe_sales` has 10,000 transactions with the following columns:
 
 | Column | Description |
